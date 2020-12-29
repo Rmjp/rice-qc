@@ -18,10 +18,14 @@ closing = cv.morphologyEx(opening, cv.MORPH_CLOSE, kernel)
 
 ret,pre = cv.threshold(closing, 160, 255, cv.THRESH_BINARY)
 
+#conture
+contours, s = cv.findContours(pre, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
+con = img.copy()
+con = cv.drawContours(con, contours, -1 , (0, 255, 0), 3)
+
 #imshow
-cv.imshow("clo", closing)
-cv.imshow("ope", opening)
-cv.imshow("bi", bi)
+cv.imshow("pre", pre)
+cv.imshow("con", con)
 cv.waitKey(0)
 cv.destroyAllWindows()
 
